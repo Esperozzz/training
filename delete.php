@@ -1,7 +1,10 @@
 <?php
-
 include_once 'src/db_connect.php';
+include_once 'src/db_function.php';
 
-$sql = "DELETE FROM task8 WHERE id = ?;";
+$id = trim($_GET['id']);
 
-$pdo->prepare();
+delete_user($pdo, $id);
+
+header('Location: /task_8.php');
+exit;
