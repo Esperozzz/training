@@ -2,23 +2,34 @@
 include_once 'src/db_connect.php';
 include_once 'src/db_function.php';
 
-//if (filter_var(INPUT_GET, $_GET['id'], FILTER_VALIDATE_INT)) {
-    $id = $_GET['id'];
-//} else {
-    //header('Location: /task_8.php');
-//}
+//Список ключей данных пользователя
+$user_keys = [
+    'first_name',
+    'last_name',
+    'username',
+];
 
-if ($_POST['submit'] === 'ok') {
-    var_dump($_POST);
+//Получаем id пользователя
+$id = $_GET['id'];
 
-    $new_data = [];
+//Проверяем, был ли ввод новых данных
+if (isset($_POST['submit']) && ($_POST['submit'] === 'ok')) {
     $new_data['first_name'] = htmlspecialchars(trim($_POST['firstname']));
     $new_data['last_name'] = htmlspecialchars(trim($_POST['lastname']));
-    $new_data['username'] = filter_var(trim($_POST['username']), FILTER_SANITIZE_STRING);
+    $new_data['username'] = htmlspecialchars(trim($_POST['username']));
+    $new_data['id'] = $id;
+
+    user_data_update($pdo, $new_data);
+} else {
+    //Если нет, заполняем поля значениями по умолчанию
+    $new_data = array_fill_keys($user_keys, '');
 }
 
-$user = select_user($pdo, $id);
-
+//Получаем информацию о пользователе из БД
+if (!$user = select_user($pdo, $id)) {
+    //Если нет, заполняем поля значениями по умолчанию
+    $user = array_fill_keys($user_keys, '');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
