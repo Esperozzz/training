@@ -51,3 +51,10 @@ INSERT INTO task8 (`first_name`,`last_name`,`username`) VALUES
     ('Larry','the Bird','@twitter'),
     ('Larry the Bird','Bird','@twitter');
 */
+/* Задание №9
+CREATE TABLE task9 (
+    id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    text VARCHAR(500) NOT NULL,
+    UNIQUE KEY (text)
+);
+*/

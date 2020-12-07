@@ -2,8 +2,6 @@
 include_once 'src/db_function.php';
 include_once 'src/db_connect.php';
 
-//print_r(db_select($pdo, 'task8', ['id', 'first_name', 'last_name', 'username']));
-
 $sql = 'SELECT `id`, `first_name`, `last_name`, `username` FROM task8';
 
 if (isset($pdo)) {

@@ -1,10 +1,6 @@
 <?php
-include_once 'src/db_connect.php';
-include_once 'src/db_function.php';
-
-$id = trim($_GET['id']);
+include_once 'includes.php';
 
 delete_user($pdo, $id);
-
 header('Location: /task_8.php');
 exit;

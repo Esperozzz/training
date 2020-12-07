@@ -1,6 +1,6 @@
 <?php
-include_once 'src/db_connect.php';
-include_once 'src/db_function.php';
+
+include_once 'includes.php';
 
 //Список ключей данных пользователя
 $user_keys = [
@@ -9,9 +9,6 @@ $user_keys = [
     'username',
 ];
 
-//Получаем id пользователя
-$id = $_GET['id'];
-
 //Проверяем, был ли ввод новых данных
 if (isset($_POST['submit']) && ($_POST['submit'] === 'ok')) {
     $new_data['first_name'] = htmlspecialchars(trim($_POST['firstname']));
@@ -19,6 +16,7 @@ if (isset($_POST['submit']) && ($_POST['submit'] === 'ok')) {
     $new_data['username'] = htmlspecialchars(trim($_POST['username']));
     $new_data['id'] = $id;
 
+    //Вносим новые данные в БД
     user_data_update($pdo, $new_data);
 } else {
     //Если нет, заполняем поля значениями по умолчанию

@@ -1,10 +1,7 @@
 <?php
 
-include_once 'src/db_connect.php';
+include_once 'includes.php';
 
-$id = $_GET['id'];
-
-$sql = "SELECT `first_name`, `last_name`, `username` FROM task8 WHERE id = {$id}";
-
-$stmt = $pdo->query($sql);
-print_r($stmt->fetchAll(PDO::FETCH_ASSOC));
+//Перенаправляем на страницу редактирования
+header('Location: /edit.php?id=' . $id);
+exit;

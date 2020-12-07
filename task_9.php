@@ -1,3 +1,18 @@
+<?php
+
+include_once 'src/db_connect.php';
+include_once 'src/db_function.php';
+
+if ($_POST['submit'] === 'ok' && !empty(trim($_POST['text']))) {
+    $text = htmlentities(trim($_POST['text']));
+    if (add_text($pdo, $text)) {
+        echo 'false';
+    } else {
+        echo  'true';
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +42,7 @@
                             Задание
                         </h2>
                         <div class="panel-toolbar">
+
                             <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                             <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
                         </div>
@@ -35,10 +51,10 @@
                         <div class="panel-content">
                             <div class="panel-content">
                                 <div class="form-group">
-                                    <form action="">
+                                    <form action="<?=$_SERVER['SCRIPT_NAME']?>" method="post">
                                         <label class="form-label" for="simpleinput">Text</label>
-                                        <input type="text" id="simpleinput" class="form-control">
-                                        <button class="btn btn-success mt-3">Submit</button>
+                                        <input name="text" type="text" id="simpleinput" class="form-control">
+                                        <button name="submit" class="btn btn-success mt-3" type="submit" value="ok">Submit</button>
                                     </form>
                                 </div>
                             </div>
