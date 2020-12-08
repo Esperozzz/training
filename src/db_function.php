@@ -1,31 +1,13 @@
 <?php
 
-function db_select($pdo, $columns = [])
-{
-    //Получаем список необходимых колонок
-    $col_names = '';
-    foreach ($columns as $column) {
-        $col_names .= "`{$column}`, ";
-    }
-    //Удаляем лишнюю запятую и пробел в конце строки
-    $col_names = substr($col_names, 0, -2);
-
-    $query = "SELECT {$col_names} FROM task8;";
-    $stmt = $pdo->query($query);
-
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
+//Добавление текста в базу
 function add_text(PDO $pdo, $text)
 {
     $query = 'INSERT INTO task9 (`text`) VALUE (?)';
 
     $stmt = $pdo->prepare($query);
     $stmt->execute([$text]);
-    if ($stmt->errorCode() === 23000) {
-        return false;
-    }
-    return true;
+    return (bool) $stmt->rowCount();
 }
 
 //Выбрать информацию о пользователе
@@ -62,9 +44,6 @@ function delete_user(PDO $pdo, $id)
 {
     $query = "DELETE FROM task8 WHERE id = ?;";
     $stmt = $pdo->prepare($query);
-
-    //Если не получается удалить выдаем информацию об ошибке
-    if (!$stmt->execute([$id])) {
-        print_r($pdo->errorInfo());
-    }
+    $stmt->execute([$id]);
+    return (bool) $stmt->rowCount();
 }

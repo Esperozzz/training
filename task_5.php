@@ -2,12 +2,6 @@
 
 include_once 'src/db_connect.php';
 
-$sql = 'SELECT `name`, `image`, `profession`, `user_type`, `twitter`, `wrapbootstrap_link`, `banned` FROM users';
-
-if (isset($pdo)) {
-    $stmt = $pdo->query($sql);
-    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} else {
     $users = [
         [
             'name' => 'Sunny A.',
@@ -42,8 +36,6 @@ if (isset($pdo)) {
             'wrapbootstrap_link' => 'sildur',
         ],
     ];
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

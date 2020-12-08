@@ -3,6 +3,9 @@
 include_once 'src/db_connect.php';
 include_once 'src/db_function.php';
 
+//Ошибка добавления в таблицу
+$error = false;
+
 //Проверяем наличие ввода
 if (isset($_POST['submit']) &&
     $_POST['submit'] === 'ok' &&
@@ -11,7 +14,9 @@ if (isset($_POST['submit']) &&
     //Обрабатываем
     $text = htmlentities(trim($_POST['text']));
     //Вносим в базу
-    add_text($pdo, $text);
+    if (!add_text($pdo, $text)) {
+        $error = true;
+    }
 }
 
 ?>
@@ -52,6 +57,14 @@ if (isset($_POST['submit']) &&
                         <div class="panel-content">
                             <div class="panel-content">
                                 <div class="form-group">
+                                    <?php 
+                                    if ($error) {
+                                        echo '<div class="alert alert-danger" role="alert">';
+                                        echo 'You should check in on some of those field below.';
+                                        echo '</div>';
+                                    }
+                                    ?>
+                                    
                                     <form action="<?=$_SERVER['SCRIPT_NAME']?>" method="post">
                                         <label class="form-label" for="simpleinput">Text</label>
                                         <input name="text" type="text" id="simpleinput" class="form-control">
