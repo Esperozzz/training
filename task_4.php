@@ -1,5 +1,5 @@
 <?php
-$entity = [
+$items = [
     [
         'name' => 'My Tasks',
         'indicator' => '130 / 500',
@@ -65,6 +65,16 @@ $entity = [
                     </div>
                     <div class="panel-container show">
                         <div class="panel-content">
+                        <?php foreach ($items as $item):?>
+                            <div class="d-flex {$div_class}">
+                                <?=?>
+                                <span class="d-inline-block ml-auto">{$item['indicator']}</span>"
+                            </div>
+                            <div class="progress progress-sm mb-3">
+                                <div class="progress-bar bg-'. $item['color'] . '-'. $item['bg_fusion'] . '" role="progressbar" style="width: ' . $item['bar_width'] . '%;" aria-valuenow="' . $item['bar_width'] . '" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        <?php endforeach;?>
+
 
                             <?php
                             foreach ($entity as $key => $item) {

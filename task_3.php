@@ -1,19 +1,19 @@
 <?php
 $menu_items = [
     [
-        'name' => 'Главная',
-        'link' => true,
-        'active' => false,
+        'title' => 'Главная',
+        'is_link' => true,
+        'href' => 'example.com/',
     ],
     [
-        'name' => 'PHP',
-        'link' => true,
-        'active' => false,
+        'title' => 'PHP',
+        'is_link' => true,
+        'href' => 'example.com/php',
     ],
     [
-        'name' => 'Функции',
-        'link' => false,
-        'active' => true,
+        'title' => 'Функции',
+        'is_link' => false,
+        'href' => '#',
     ],
 ];
 ?>
@@ -53,23 +53,15 @@ $menu_items = [
                     <div class="panel-container show">
                         <div class="panel-content">
                             <ol class="breadcrumb page-breadcrumb">
-                                <?php
-                                    foreach ($menu_items as $item) {
-                                        $str = '<li class="breadcrumb-item"';
-                                        //Преряем, является ли пункт меню, текущей страницей
-                                        if (isset($item['active']) && $item['active']) { $str .= ' active'; }
-                                        $str .= '>';
-
-                                        //Проверяем, является ли пункт меню ссылкой
-                                        if (isset($item['link']) && $item['link']) {
-                                            $str .= '<a href="#">' . $item['name'] . '</a>';
-                                        } else {
-                                            $str .= $item['name'];
-                                        }
-
-                                        echo $str . '</li>';
-                                    }
-                                ?>
+                                <?php foreach ($menu_items as $item):?>
+                                    <?php if ($item['is_link']):?>
+                                        <li class="breadcrumb-item">
+                                            <a href="<?=$item['href']?>"><?=$item['title']?></a>
+                                        </li>
+                                     <?php else: ?>
+                                        <li class="breadcrumb-item active"><?=$item['title']?></li>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </ol>
                         </div>
                     </div>

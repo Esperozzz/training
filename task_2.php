@@ -58,6 +58,8 @@ $articles = [
                     <div class="panel-container show">
                         <div class="panel-content">
                             <div class="fs-lg fw-300 p-5 bg-white border-faded rounded mb-g">
+
+
                                 <?php
                                     foreach ($articles as $article) {
                                         echo $article['header'];
