@@ -66,18 +66,18 @@ $items = [
                     <div class="panel-container show">
                         <div class="panel-content">
                         <?php foreach ($items as $item):?>
-                            <div class="d-flex {$div_class}">
-                                <?=?>
-                                <span class="d-inline-block ml-auto">{$item['indicator']}</span>"
+                            <div class="d-flex">
+                                <?=$item['name']?>
+                                <span class="d-inline-block ml-auto"><?=$item['indicator']?></span>
                             </div>
                             <div class="progress progress-sm mb-3">
-                                <div class="progress-bar bg-'. $item['color'] . '-'. $item['bg_fusion'] . '" role="progressbar" style="width: ' . $item['bar_width'] . '%;" aria-valuenow="' . $item['bar_width'] . '" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-<?=$item['color']?>-<?=$item['bg_fusion']?>" role="progressbar" style="width: <?=$item['bar_width']?>%;" aria-valuenow="<?=$item['bar_width']?>" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         <?php endforeach;?>
 
 
                             <?php
-                            foreach ($entity as $key => $item) {
+                            /*foreach ($entity as $key => $item) {
                                 //Добавляем bootstrap класс если элемент является первым
                                 $div_class = '';
                                 if ($key === 0) { $div_class = ' mt-2'; }
@@ -89,7 +89,7 @@ $items = [
                                 echo '<div class="progress progress-sm mb-3">';
                                 echo '<div class="progress-bar bg-'. $item['color'] . '-'. $item['bg_fusion'] . '" role="progressbar" style="width: ' . $item['bar_width'] . '%;" aria-valuenow="' . $item['bar_width'] . '" aria-valuemin="0" aria-valuemax="100"></div>';
                                 echo '</div>';
-                            }
+                            }*/
                             ?>
                         </div>
                     </div>
